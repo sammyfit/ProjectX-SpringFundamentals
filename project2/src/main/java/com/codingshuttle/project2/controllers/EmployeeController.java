@@ -3,8 +3,10 @@ package com.codingshuttle.project2.controllers;
 
 import com.codingshuttle.project2.dto.EmployeeDTO;
 import com.codingshuttle.project2.entities.EmployeeEntity;
+import com.codingshuttle.project2.exception.ResourceNotFoundException;
 import com.codingshuttle.project2.repositories.EmployeeRepo;
 import com.codingshuttle.project2.services.EmployeeService;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @RestController
@@ -29,7 +32,7 @@ public class EmployeeController {
     public ResponseEntity<EmployeeDTO> getEmployeeById(@PathVariable(name = "employeeId") Long id) {
         Optional<EmployeeDTO> employeeDTO = employeeService.getEmployeeById(id);
         return employeeDTO.map(employeeDTO1 -> ResponseEntity.ok(employeeDTO1))
-                   .orElse(ResponseEntity.notFound().build());
+                   .orElseThrow(() -> new ResourceNotFoundException("Employee was not found for ID: "+id));
     }
 
     @GetMapping
@@ -39,13 +42,13 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody EmployeeDTO inputEmp){
+    public ResponseEntity<EmployeeDTO> createEmployee(@RequestBody @Valid EmployeeDTO inputEmp){
         EmployeeDTO savedEmployee = employeeService.createNewEmployee(inputEmp);
         return new ResponseEntity<>(savedEmployee, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{employeeId}")
-    public ResponseEntity<EmployeeDTO> updateEmployeeById(@RequestBody EmployeeDTO employeeDTO, @PathVariable Long employeeId){
+    public ResponseEntity<EmployeeDTO> updateEmployeeById(@RequestBody @Valid EmployeeDTO employeeDTO, @PathVariable Long employeeId){
         return ResponseEntity.ok(employeeService.updateEmployeeById(employeeId, employeeDTO));
     }
 
