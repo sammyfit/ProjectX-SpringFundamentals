@@ -4,6 +4,7 @@ import com.springdatajpa.projection.dto.BloodGroupStats;
 import com.springdatajpa.projection.dto.CPatientInfo;
 import com.springdatajpa.projection.dto.IPatientInfo;
 import com.springdatajpa.projection.entity.Patient;
+import com.springdatajpa.projection.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,9 @@ public class PatientServiceTest {
 
     @Autowired
     private PatientRepository patientRepository;
+
+    @Autowired
+    private PatientService patientService;
 
     @Test
     public void testPatient(){
@@ -57,5 +61,16 @@ public class PatientServiceTest {
         int rowsAffected = patientRepository.updatePatientNameById("Ronnie Mehta", 3L);
 
         System.out.println(rowsAffected + "row affected");
+    }
+
+    @Test
+    public void testDemo() {
+        Patient patient = new Patient(); // Currently in transient state
+        patientRepository.save(patient); // This will call the save -> persist method from JpaRepository (Have methods for Save or Update)
+    }
+
+    @Test
+    public void testPatientService() {
+        patientService.testPatientTransaction();
     }
 }
