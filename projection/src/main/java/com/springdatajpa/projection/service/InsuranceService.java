@@ -24,4 +24,21 @@ public class InsuranceService {
         insurance.setPatient(patient); //Optional, In order to maintain bi-directional consistency
         return insurance;
     }
+
+    @Transactional
+    public Insurance updateInsuranceOfPatient(Insurance insurance, long patientId) {
+        Patient patient = patientRepository.findById(patientId).orElseThrow();
+
+        patient.setInsurance(insurance);
+        insurance.setPatient(patient); //Optional, In order to maintain bi-directional consistency
+        return insurance;
+    }
+
+    @Transactional
+    public Patient removeInsuranceOfPatient(long patientId) {
+        Patient patient = patientRepository.findById(patientId).orElseThrow();
+
+        patient.setInsurance(null);
+        return patient;
+    }
 }

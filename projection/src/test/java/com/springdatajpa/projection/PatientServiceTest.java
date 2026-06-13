@@ -23,7 +23,7 @@ public class PatientServiceTest {
 
     @Test
     public void testPatient(){
-        List<Patient> patientList = patientRepository.findAll();
+        List<Patient> patientList = patientRepository.getAllPatientsWithAppointments();
 
         for(Patient p : patientList){
             System.out.println(p);
