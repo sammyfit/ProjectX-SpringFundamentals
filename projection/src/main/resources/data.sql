@@ -20,3 +20,8 @@ INSERT INTO patient (name, birth_date, email, gender, blood_group, created_at) V
 ('Siddharth Roy',   DATE '1987-07-27', 'siddharth.roy@example.com',   'Male',   'O_NEGATIVE',  CURRENT_TIMESTAMP),
 ('Kavya Menon',     DATE '1999-01-17', 'kavya.menon@example.com',     'Female', 'A_NEGATIVE',  CURRENT_TIMESTAMP),
 ('Aditya Kulkarni', DATE '1992-12-08', 'aditya.kulkarni@example.com', 'Male',   'B_NEGATIVE',  CURRENT_TIMESTAMP);
+
+INSERT INTO doctor (name, specialization, email) VALUES
+('Dr. Salman Khan', 'Cardiology', 'bhaijaan.thedoctor@gmail.com'),
+('Dr. Akshay Kumar', 'Physician', 'akbaba.cured@gamil.com'),
+('Dr. Ranveer Singh', 'surgeon', 'indiakabestsurgeon@gmail.com');

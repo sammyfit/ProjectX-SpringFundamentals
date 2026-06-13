@@ -1,4 +1,4 @@
-package com.springdatajpa.projection;
+package com.springdatajpa.projection.repository;
 
 import com.springdatajpa.projection.dto.BloodGroupStats;
 import com.springdatajpa.projection.dto.CPatientInfo;

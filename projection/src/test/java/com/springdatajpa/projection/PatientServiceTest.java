@@ -4,6 +4,7 @@ import com.springdatajpa.projection.dto.BloodGroupStats;
 import com.springdatajpa.projection.dto.CPatientInfo;
 import com.springdatajpa.projection.dto.IPatientInfo;
 import com.springdatajpa.projection.entity.Patient;
+import com.springdatajpa.projection.repository.PatientRepository;
 import com.springdatajpa.projection.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

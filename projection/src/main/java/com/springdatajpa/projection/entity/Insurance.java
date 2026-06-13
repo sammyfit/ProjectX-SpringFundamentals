@@ -1,10 +1,7 @@
 package com.springdatajpa.projection.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.jpa.repository.Query;
 
@@ -14,6 +11,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Insurance {
@@ -36,5 +35,6 @@ public class Insurance {
     private LocalDateTime createdAt;
 
     @OneToOne(mappedBy = "insurance") //No column will be added
+    @ToString.Exclude
     private Patient patient; //inverse side
 }

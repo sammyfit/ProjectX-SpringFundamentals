@@ -1,10 +1,7 @@
 package com.springdatajpa.projection.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.print.Doc;
 import java.time.LocalDateTime;
@@ -12,6 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
+@Builder
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 public class Appointment {
@@ -28,9 +27,11 @@ public class Appointment {
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Patient patient; //owning side
 
     @ManyToOne
     @JoinColumn(nullable = false)
+    @ToString.Exclude
     private Doctor doctor;
 }

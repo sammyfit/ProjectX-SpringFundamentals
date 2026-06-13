@@ -1,6 +1,6 @@
 package com.springdatajpa.projection.service;
 
-import com.springdatajpa.projection.PatientRepository;
+import com.springdatajpa.projection.repository.PatientRepository;
 import com.springdatajpa.projection.entity.Patient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,5 +19,11 @@ public class PatientService {
 
         System.out.println(p1 + " " + p2);
         System.out.println(p1 == p2); //Not referencing same reference
+    }
+
+    @jakarta.transaction.Transactional
+    public void deletePatient(Long patientId) {
+        Patient patient = patientRepository.findById(patientId).orElseThrow();
+        patientRepository.deleteById(patientId);
     }
 }
