@@ -1,7 +1,6 @@
-package com.codingshuttle.project2.advices;
+package com.codingshuttle.prod_ready_features.advice;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.Pattern;
 import lombok.Data;
 
 import java.time.LocalDateTime;
