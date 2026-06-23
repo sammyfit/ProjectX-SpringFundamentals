@@ -1,7 +1,8 @@
 package com.codingshuttle.prod_ready_features.controllers;
 
 import com.codingshuttle.prod_ready_features.entities.PostEntity;
-import jakarta.persistence.EntityManager;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.persistence.EntityManagerFactory;
 import org.hibernate.envers.AuditReader;
 import org.hibernate.envers.AuditReaderFactory;
@@ -16,12 +17,14 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(path = "/audit")
+@Tag(name = "Audit", description = "Endpoints for inspecting entity revision history")
 public class AuditController {
 
     @Autowired
     private EntityManagerFactory entityManagerFactory;
 
     @GetMapping(path = "/posts/{postId}")
+    @Operation(summary = "Get post revisions", description = "Returns the full revision history of a post via Hibernate Envers")
     public List<PostEntity> getPostRevisions(@PathVariable Long postId){
         AuditReader reader = AuditReaderFactory.get(entityManagerFactory.createEntityManager());
 
